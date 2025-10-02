@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #3d2f30;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #4b3738;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+th, td {
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    padding: 15px;
+}
+
+th {
+    font-weight: bold;
+    background-color: #5a4041;
+}
+
+td.subject {
+    text-align: left;
+    font-weight: 600;
+    background-color: #453132;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.4);
+    cursor: pointer;
+    accent-color: #ffcc00;
+}
+
+input[type="text"] {
+    width: 90%;
+    padding: 6px 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    transition: border 0.2s;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #ffcc00;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+}
+
+.feedback-btn {
+    margin: 25px auto;
+    display: block;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background: #ffcc00;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.feedback-btn:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+}
+
+.feedback-btn:active {
+    background: #cc9900;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}

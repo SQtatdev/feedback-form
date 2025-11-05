@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Feedback Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4b3738;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .stats {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #4b3738;
+        }
+        .refresh-btn {
+            background: #4b3738;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .refresh-btn:hover {
+            background: #5a4041;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Feedback Database Admin Panel</h1>
+        
+        <button class="refresh-btn" onclick="loadData()">🔄 Refresh Data</button>
+        
+        <div class="stats" id="stats">
+            <h3>📈 Statistics</h3>
+            <div id="statsContent">Loading statistics...</div>
+        </div>
+        
+        <h2>📝 All Feedback Entries</h2>
+        <div id="feedbackData">Loading data...</div>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                // Загрузка статистики
+                const statsResponse = await fetch('/api/stats');
+                const stats = await statsResponse.json();
+                
+                let statsHTML = '';
+                if (stats.length === 0) {
+                    statsHTML = '<p>No data available yet</p>';
+                } else {
+                    stats.forEach(stat => {
+                        statsHTML += `
+                            <div class="stat-item">
+                                <strong>${stat.subject}:</strong> ${stat.total} entries total<br>
+                                ✅ Bangladesh: ${stat.bangladesh_count} | 
+                                ✅ Train: ${stat.train_count} | 
+                                ✅ Women: ${stat.women_count} | 
+                                ✅ Snacks: ${stat.snacks_count} | 
+                                ✅ Home: ${stat.home_count}
+                            </div>
+                        `;
+                    });
+                }
+                document.getElementById('statsContent').innerHTML = statsHTML;
+
+                // Загрузка всех записей
+                const response = await fetch('/api/feedback');
+                const data = await response.json();
+                
+                let html = '';
+                if (data.length === 0) {
+                    html = '<p>No feedback entries yet</p>';
+                } else {
+                    html = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Subject</th>
+                                    <th>Bangladesh</th>
+                                    <th>Train</th>
+                                    <th>Women</th>
+                                    <th>Snacks</th>
+                                    <th>Home</th>
+                                    <th>Custom Text</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    data.forEach(row => {
+                        html += `
+                            <tr>
+                                <td>${row.id}</td>
+                                <td><strong>${row.subject}</strong></td>
+                                <td>${row.bangladesh ? '✅' : '❌'}</td>
+                                <td>${row.train ? '✅' : '❌'}</td>
+                                <td>${row.women ? '✅' : '❌'}</td>
+                                <td>${row.snacks ? '✅' : '❌'}</td>
+                                <td>${row.home ? '✅' : '❌'}</td>
+                                <td>${row.custom_text || '-'}</td>
+                                <td>${new Date(row.created_at).toLocaleString('et-EE')}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    html += '</tbody></table>';
+                }
+                
+                document.getElementById('feedbackData').innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('feedbackData').innerHTML = 
+                    '<p style="color: red;">Error loading data. Make sure server is running.</p>';
+            }
+        }
+
+        // Загружаем данные при открытии страницы
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+        // Автообновление каждые 10 секунд
+        setInterval(loadData, 10000);
+    </script>
+</body>
+</html>

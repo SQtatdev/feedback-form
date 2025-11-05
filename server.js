@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
-// Инициализация базы данных
+
 const db = new sqlite3.Database('./feedback.db', (err) => {
     if (err) {
         console.error('Error opening database:', err);
@@ -19,7 +19,7 @@ const db = new sqlite3.Database('./feedback.db', (err) => {
     }
 });
 
-// Создание таблицы
+
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS feedback (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +34,7 @@ db.serialize(() => {
     )`);
 });
 
-// API для сохранения фидбека
+
 app.post('/api/feedback', (req, res) => {
     const feedbackData = req.body;
     
@@ -70,7 +70,7 @@ app.post('/api/feedback', (req, res) => {
     stmt.finalize();
 });
 
-// API для получения всех фидбеков
+
 app.get('/api/feedback', (req, res) => {
     db.all(`SELECT * FROM feedback ORDER BY created_at DESC`, (err, rows) => {
         if (err) {
@@ -81,7 +81,7 @@ app.get('/api/feedback', (req, res) => {
     });
 });
 
-// API для получения статистики
+
 app.get('/api/stats', (req, res) => {
     db.all(`
         SELECT subject, 
@@ -101,12 +101,12 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
-// ✅ ВАЖНО: Маршрут для админ-панели
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-// ✅ Маршрут для главной страницы
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });

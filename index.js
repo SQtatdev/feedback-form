@@ -1,9 +1,9 @@
-// Сохранение данных в LocalStorage и отправка на сервер
+
 async function saveData(showAlert = false) {
     const rows = document.querySelectorAll('tbody tr');
     const feedbackData = [];
 
-    // Собираем данные из всех строк
+    
     rows.forEach((row) => {
         const subject = row.querySelector('.subject').textContent;
         const checkboxes = row.querySelectorAll('input[type="checkbox"]');
@@ -22,10 +22,10 @@ async function saveData(showAlert = false) {
         feedbackData.push(rowData);
     });
 
-    // Сохраняем в LocalStorage
+    
     localStorage.setItem('feedbackData', JSON.stringify(feedbackData));
     
-    // Отправляем на сервер
+    
     try {
         for (const data of feedbackData) {
             const response = await fetch('http://localhost:3000/api/feedback', {
@@ -53,7 +53,7 @@ async function saveData(showAlert = false) {
     }
 }
 
-// Загрузка данных из LocalStorage
+
 function loadData() {
     const savedData = localStorage.getItem('feedbackData');
     if (savedData) {
@@ -76,7 +76,7 @@ function loadData() {
     }
 }
 
-// Автосохранение при изменении данных БЕЗ оповещения
+
 function setupAutoSave() {
     const inputs = document.querySelectorAll('input[type="checkbox"], input[type="text"]');
     inputs.forEach(input => {
@@ -86,7 +86,7 @@ function setupAutoSave() {
     });
 }
 
-// Инициализация
+
 document.addEventListener('DOMContentLoaded', function() {
     const feedbackBtn = document.querySelector('.feedback-btn');
     if (feedbackBtn) {

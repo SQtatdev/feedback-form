@@ -1,34 +1,34 @@
-# Создаем .gitignore с полным содержимым
+
 cat > .gitignore << EOF
-# Dependency directories
+
 node_modules/
 npm-packages-offline-cache/
 
-# Database files
+
 *.db
 *.sqlite
 *.db-journal
 
-# Logs
+
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Runtime data
+
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Environment variables
+
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# OS generated files
+
 .DS_Store
 .DS_Store?
 ._*
@@ -37,21 +37,21 @@ pids
 ehthumbs.db
 Thumbs.db
 
-# IDE files
+
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Build outputs
+
 dist/
 build/
 out/
 
-# Optional npm cache directory
+
 .npm
 
-# Optional eslint cache
+
 .eslintcache
 EOF

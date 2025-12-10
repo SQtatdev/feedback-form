@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <title>Õppeaine tabel</title>
   <link rel="stylesheet" href="style.css">
-  
 </head>
-  
-<body>
+
+<body class="bg-dark text-light">
+
   <script src="index.js"></script>
+
   <div class="container">
-    <div class="profile">
-      <img src="logo.jpg" alt="Profile">
+
+    <div class="profile text-center my-3">
+      <img src="logo.jpg" alt="Profile" class="img-fluid">
     </div>
 
-    <table>
+    <!-- bootstrap table -->
+    <table class="table table-bordered table-dark table-striped align-middle">
       <thead>
         <tr>
           <th></th>
@@ -29,6 +36,8 @@
         </tr>
       </thead>
       <tbody>
+
+      
         <tr>
           <td class="subject">Matemaatika</td>
           <td><input type="checkbox"></td>
@@ -36,8 +45,9 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
         <tr>
           <td class="subject">Andmebaasid</td>
           <td><input type="checkbox"></td>
@@ -45,8 +55,9 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
         <tr>
           <td class="subject">Rühmajuhtija tund</td>
           <td><input type="checkbox"></td>
@@ -54,8 +65,9 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
         <tr>
           <td class="subject">Tarkvaraarenduse meetodid</td>
           <td><input type="checkbox"></td>
@@ -63,8 +75,9 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
         <tr>
           <td class="subject">Testimise alused ja testimisplaan</td>
           <td><input type="checkbox"></td>
@@ -72,8 +85,9 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
         <tr>
           <td class="subject">Küberturbe alused</td>
           <td><input type="checkbox"></td>
@@ -81,12 +95,18 @@
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
           <td><input type="checkbox"></td>
-          <td><input type="text" placeholder="Sisesta..."></td>
+          <td><input type="text" placeholder="Sisesta..." class="form-control"></td>
         </tr>
+
       </tbody>
     </table>
 
-    <button class="feedback-btn">Send Feedback</button>
+    <button class="btn btn-warning feedback-btn">Send Feedback</button>
+
   </div>
+
+  <!-- bootstrap js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
